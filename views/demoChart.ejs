@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src= "https://cdn.zingchart.com/zingchart.min.js"></script>
+		<script> zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+		ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf6d"];</script>
+		<style>
+			body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ 
+#chart-one {
+  height: 75%;
+  width: 80%;
+  margin: 0 auto;
+}
+		</style>
+	</head>
+	<body>
+		<div id="chart-one"></div>
+		<script>
+			const fetchParams = {
+      method: "GET",
+      // mode: "cors",
+      // cache: "default"
+      };
+ 
+const url = "https://swapi.co/api/people/";
+ 
+fetch(url, fetchParams)
+  .then(res => {
+    if (!res.ok) {
+      throw new Error(res.statusText);
+    }
+    return res.json();
+  })
+  .then(data => {
+    const characters = data.results;
+    let characterData = [];
+    characters.forEach(function(character) {
+      characterData.push([character.name, parseInt(character.height)]);
+    });
+    const chartOneData = {
+      type: "bar",
+      title: {
+        text: "Fetch + REST API Endpoint Demo",
+        adjustLayout: true
+      },
+      tooltip: {
+        text: 'Name: %kt<br>Height: %vvcm'
+      },
+      scaleX: {
+        label: {
+          text: 'Characters'
+        },
+        item: {
+          angle: '-45'
+        }
+      },
+      scaleY: {
+        label: {
+          text: 'Height In CM'
+        }
+      },
+      series: [
+        {
+          values: characterData
+        }
+      ],
+      plotarea: {
+        margin: 'dynamic'
+      }
+    };
+    zingchart.render({
+      id: "chart-one",
+      data: chartOneData,
+      height: "100%",
+      width: "100%"
+    });
+  })
+  .catch(err => {
+    console.log("Error Getting Data From Star Wars API");
+  });
+		</script>
+	</body>
+</html>

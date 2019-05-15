@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<!-- head -->
+<head>
+  <title>Smart pump</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/ico" href="/images/logo.png" />
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <script src="/js/zingchart.min.js"></script>
+  <script src="/js/jquery.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+</head>
+
+<!-- body  -->
+<body>
+  <div class="test2"></div>
+  <div class="topnav">
+    <a class="active" href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a class="align-items-end" href="/logout" title="logout"><i class="fas fa-sign-out-alt"></i> Logout </i></a>
+  </div>
+  <div class="row mt-1">
+
+    <!-- the left content -->
+    <div style="width: 65%">
+      <h1 id="abc" align="center">Web Page Analyzer</h1>
+      <div id="date" align="center">
+
+      </div>
+
+      <!-- content -->
+      <div class="container">
+        <div>
+          <div id="myChart"></div>
+
+          <div class="container d-flex justify-content-center">
+            <div class="badge badge-success m-1">Độ ẩm đất</div>
+            <div class="badge badge-danger m-1">Độ ẩm không khí</div>
+          </div>
+          <div id="myChart_lux" class="mt-5">
+          </div>
+          <div class="container d-flex justify-content-center">
+            <div class="badge badge-info m-1">Cường độ ánh sáng</div>
+            <div class="badge badge-danger m-1">Nhiệt độ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- the content in the right -->
+    <div class=" border" style="width: 35%">
+      <div class="container">
+        <h2 align="center">Data Analyzer</h2>
+        <br>
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#day1">1 Day</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#day3">3 Days</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#week1">1 Week</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div id="day1" class="tab-pane active"><br>
+
+          </div>
+
+          <div id="day3" class="tab-pane fade"><br>
+            fdh
+          </div>
+          <div id="week3" class="tab-pane fade"><br>
+            sd
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- <div id="test1"></div> -->
+    <!-- <div id="test2"></div> -->
+
+    <!-- <style type="text/css" media="screen">
+      html,body,#myChart{
+       height: 100%;
+       width: 100%;
+     }
+     .tablink {
+      width: 20%;
+    }
+  </style> -->
+  <script src="/js/script3.js"></script>
+
+</body>
+</html>

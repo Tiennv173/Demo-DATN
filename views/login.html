@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head w3-include-html = "head.html">
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="icon" type="image/ico" href="/images/logo.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.js"></script>
+    <!-- <script src="/js/script3.js"></script> -->
+</head>
+
+
+<body>
+    
+    <div class="container form-group col-md-6 col-sm-6 col-lg-4 mt-2">
+        <div class="panel-heading mt-3">
+            <h2 class="panel-title">Please Sign In</h2>
+        </div>  
+        <form action="/" method="post" accept-charset="utf-8">
+            <!-- <label for="">Email</label> -->
+            <input class="form-control mt-2" placeholder="E-mail" name="logemail" type="email" autofocus>
+            <!-- <label for="">Password</label> -->
+
+            <input class="form-control mt-2" placeholder="Password" name="logpassword" type="password" value="">
+
+            <div class="checkbox mt-2">
+                <label>
+                    <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                </label>
+            </div>
+
+            <input class="btn btn-lg btn-success btn-block mt-2" type="submit" value="LOGIN">
+        </form>
+    </div>
+</body>
+
+</html>

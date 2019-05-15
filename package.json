@@ -1,0 +1,44 @@
+{
+  "name": "SmartPumpDemo1",
+  "version": "1.0.0",
+  "description": "A demo chart rendered using data pulled from MongoDB documents. Uses MongoDB, Node, Express, Mongoose.",
+  "main": "test2.js",
+  "repository": "http://github.com/ZingChart/ZingChart-Demos",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "Mongo",
+    "MongoDB",
+    "chart",
+    "charts",
+    "Mongoose",
+    "Mongeese",
+    "Node",
+    "NodeJS",
+    "Express",
+    "ExpressJS",
+    "ZingChart",
+    "ZingCharts"
+  ],
+  "author": "ZingChart",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.18.3",
+    "connect-flash": "*",
+    "connect-mongo": "^2.0.3",
+    "ejs": "^2.6.1",
+    "express": "^4.12.4",
+    "express-session": "*",
+    "mongoose": "^5.5.7",
+    "node-fetch": "^2.3.0",
+    "nodemon": "^1.18.11",
+    "passport": "*",
+    "passport-local": "*",
+    "path": "^0.12.7",
+    "socket.io": "^2.2.0",
+    "zingchart": "^2.1.0"
+  }
+}
