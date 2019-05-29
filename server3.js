@@ -3,6 +3,8 @@ var app = express();
 var MongoClient = require('mongodb').MongoClient;
 var bodyParser = require('body-parser'); //parse cac request den server
 var mongoose = require('mongoose');
+const exphbs = require('express-handlebars');
+
 var session = require('express-session');
 var MongoStore = require("connect-mongo")(session);
 
@@ -44,15 +46,19 @@ server,io;
 
 // set serve static file
 app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, '/views/'));
+app.engine('hbs', exphbs({ extname: 'hbs', defaultLayout: 'mainLayout', layoutsDir: __dirname + '/views/layouts/' }));
+app.set('view engine', 'hbs');
 server = http.Server(app);
 const port = process.env.PORT || 3000;
 io = socketIO(server);
 
 // var url = "mongodb://filiotteam.ml:27017/";
 // var url = "mongodb://27.73.53.224:27017/";
-var url = "mongodb://192.168.0.104/";
+// var url = "mongodb://192.168.0.104/";
 
-// var url2 = "mongodb://localhost:27017/";
+var url = "mongodb://localhost:27017";
+var url2 = "mongodb://localhost:27017";
 
 io.on('connection', function(socket) {
 
@@ -61,26 +67,28 @@ io.on('connection', function(socket) {
 			if(err)  throw err;
 			const dbo = db.db('smartirr');
 			const col = dbo.collection('data');
-
-			col.find({}).sort({_id: -1}).limit(90).toArray(function(err, docs) {
+			var count = col.find().count();
+			console.log(count);
+			col.find({"mac": "68:C6:3A:EA:1E:BC"}).sort({_id: -1}).limit(70).toArray(function(err, docs) {
 				// console.log(docs);
 				console.log(typeof(docs));
 				docs = docs.reverse();
 				socket.emit('datas',docs);
 
-				//cone database from Pi
+				//clone database from Pi
 				// MongoClient.connect(url2, function(err, db) {
 				// 	if(err)  throw err;
 				// 	const dbo = db.db('smartirr');
 				// 	const col = dbo.collection('data');
-				// 	col.insertMany(docs)
+				// 	col.insertMany(docs);
+				// 	console.log("suscessfull");
 				// })
 			})
 		});
 	};
 
 	getData();
-	setInterval(getData, 30000);
+	// setInterval(getData, 30000);
 });
 
 // include routes

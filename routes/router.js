@@ -5,7 +5,7 @@ var User = require('../models/user');
 
 //GET route for reading data
 router.get('/', function (req, res, next) {
-	return res.sendFile('/views/login.html', {root: './'});
+	res.sendFile('/views/login.html', {root: './'});
 });
 
 router.post('/', function(req, res, next) {
@@ -52,31 +52,12 @@ router.get('/dashboard', function (req, res, next) {
 	})
 });
 
-// router.get('/dashboard', function (req, res, next) {
-// 	return res.sendFile('/views/index3.html', {root: './'});
-// });
-
-
-// GET for logout logout
-router.get('/logout', function (req, res, next) {
-	if (req.session) {
-    // delete session object
-    req.session.destroy(function (err) {
-    	if (err) {
-    		return next(err);
-    	} else {
-    		return res.redirect('/');
-    	}
-    });
-}
-});
-
-
 //GET route for add user
 router.get('/adduser', function(req, res, next) {
-	console.log("add user");
-	return res.sendFile('/views/adduser.html', {root: './'});
-})
+	// console.log("add user");
+	res.sendFile('/views/adduser.html', {root: './'});
+});
+
 
 //POST route for add user
 router.post('/adduser', function(req, res, next) {
@@ -118,27 +99,92 @@ router.post('/adduser', function(req, res, next) {
 	}
 });
 
-//GET route after logining
-router.get('/dashboard', function(req, res, next) {
-	User.findById(res.session.userId)
-		.exec(function(error, user){ //The exec() method tests for a match in a string.
-			//This method returns the matched text if it finds a match, otherwise it returns null.
-			if(error) {
-				return next(error);
-			}
-			else {
-				if(user === null) {
-					var err = new Error('Not authorized! Go back!');
-					err.status = 400; //400- error bad request
-					return next(err);
-				}
-				else {
-					return res.sendFile('/views/dashboard.html', {root: './'});
-				}
-			}
+// GET for logout logout
+router.get('/logout', function (req, res, next) {
+	if (req.session) {
+    // delete session object
+    req.session.destroy(function (err) {
+    	if (err) {
+    		return next(err);
+    	} else {
+    		return res.redirect('/');
+    	}
+    });
+}
+});
 
-		});
-	});
+router.get('/employee', (req, res) => {
+    res.render("employee/addOrEdit", {
+        viewTitle: "Insert Employee"
+    });
+});
+
+
+router.get('/list', (req, res) => {
+    User.find((err, docs) => {
+        if (!err) {
+            res.render("employee/list", {
+                list: docs
+            });
+        }
+        else {
+            console.log('Error in retrieving employee list :' + err);
+        }
+    });
+});
+
+router.get('/:id', (req, res) => {
+    Employee.findById(req.params.id, (err, doc) => {
+        if (!err) {
+            res.render("employee/addOrEdit", {
+                viewTitle: "Update Employee",
+                employee: doc
+            });
+        }
+    });
+});
+
+router.get('/delete/:id', (req, res) => {
+    Employee.findByIdAndRemove(req.params.id, (err, doc) => {
+        if (!err) {
+            res.redirect('/employee/list');
+        }
+        else { console.log('Error in employee delete :' + err); }
+    });
+});
+
+
+// router.get('/dashboard', function (req, res, next) {
+// 	return res.sendFile('/views/index3.html', {root: './'});
+// });
+
+
+
+
+
+
+
+//GET route after logining
+// router.get('/dashboard', function(req, res, next) {
+// 	User.findById(res.session.userId)
+// 		.exec(function(error, user){ //The exec() method tests for a match in a string.
+// 			//This method returns the matched text if it finds a match, otherwise it returns null.
+// 			if(error) {
+// 				return next(error);
+// 			}
+// 			else {
+// 				if(user === null) {
+// 					var err = new Error('Not authorized! Go back!');
+// 					err.status = 400; //400- error bad request
+// 					return next(err);
+// 				}
+// 				else {
+// 					return res.sendFile('/views/dashboard.html', {root: './'});
+// 				}
+// 			}
+
+// 		});
+// 	});
 
 // router.get('/dashboard', function(req, res, next) {
 // 	return res.sendFile('/views/dashboard.html', {root: './'});
@@ -160,29 +206,29 @@ router.get('/logout', function(req, res, next) {
 });
 
 //get data
-var url = "mongodb://tiennguyen.koreasouth.cloudapp.azure.com:27017/";
+// var url = "mongodb://tiennguyen.koreasouth.cloudapp.azure.com:27017/";
 
-router.get('/data', function (req, res) {
-//connect DB
-MongoClient.connect(url,function(err, db){
-	if(err) throw err;
-	const dbo = db.db("device");
-	const col = dbo.collection('data');
-	col.find({}).sort({_id: -1}).limit(48).toArray().then(docs => {
-		console.log('found data for index');
-			// console.log(docs);
-			//res index.html 
-			// res.send(docs)
-			// console.log(typeof docs);
-			res.json(docs.reverse());
-			// console.log(docs);
+// router.get('/data', function (req, res) {
+// //connect DB
+// MongoClient.connect(url,function(err, db){
+// 	if(err) throw err;
+// 	const dbo = db.db("device");
+// 	const col = dbo.collection('data');
+// 	col.find({}).sort({_id: -1}).limit(48).toArray().then(docs => {
+// 		console.log('found data for index');
+// 			// console.log(docs);
+// 			//res index.html 
+// 			// res.send(docs)
+// 			// console.log(typeof docs);
+// 			res.json(docs.reverse());
+// 			// console.log(docs);
 
-			//closes connection to mongodb and logs massage
-			db.close(() => console.log("connection closed"));
-		})
-})
+// 			//closes connection to mongodb and logs massage
+// 			db.close(() => console.log("connection closed"));
+// 		})
+// })
 
-  // res.sendFile('index.html',{root: './'});
-});
+//   // res.sendFile('index.html',{root: './'});
+// });
 
 module.exports = router;

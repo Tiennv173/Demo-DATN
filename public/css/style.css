@@ -93,3 +93,24 @@ body {
     border: 1px solid #ccc;  
   }
 }
+
+aside.left-panel {
+  background: #D7E7F8;
+  display: table-cell;
+  height: 100vh;
+  min-height: 100%;
+  padding: 0 25px;
+  vertical-align: top;
+  width: 150px;
+  -webkit-transition:width 0.3s ease;
+  transition: width 0.3s ease; }
+
+.navbar-header {
+	float: none;
+	text-align: center;
+	width: 100%;
+	font-size: 20px;
+	font-weight: bold;
+	color: #0F4B88;
+	border-bottom: 2px;
+}
