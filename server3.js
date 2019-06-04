@@ -57,11 +57,11 @@ const port = process.env.PORT || 3000;
 io = socketIO(server);
 
 // var url = "mongodb://filiotteam.ml:27017/";
-var url = "mongodb://smartpump.ml:27017/";
+// var url = "mongodb://smartpump.ml:27017/";
 // var url = "mongodb://27.73.53.224:27017/";
 // var url = "mongodb://192.168.0.104/";
 
-// var url = "mongodb://localhost:27017";
+var url = "mongodb://localhost:27017";
 var url2 = "mongodb://localhost:27017";
 
 io.on('connection', function(socket) {

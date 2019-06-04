@@ -304,7 +304,7 @@ $("#date2").text(time);
 // Actuator
 
 
-var socket2 = io('http://localhost:3000');
+var socket2 = io('http://smartpump.ml:3000');
 $('document').ready(function() {
 
   var enableSubmit = function(ele) {
