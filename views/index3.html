@@ -11,10 +11,15 @@
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <link rel="stylesheet" type="text/css" href="/css/font-awesome.css">
   <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.min.css">
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"> -->
+
   <script src="/js/zingchart.min.js"></script>
   <script src="/js/jquery.js"></script>
+  <script src="/js/jquery.dataTables.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
@@ -52,11 +57,17 @@
         <a href="#data" class="nav-link" data-toggle="tab" role="tab" aria-controls="Data">Data</a>
       </li>
 
+      <div class="border-top-0" style="border-top: solid">
+        <div class="ml-3 text-primary">Actuator</div>
+        <button id="actuator" class="ml-3 mt-3 btn-primary ml-2">Level 1</button>
+      <button id="actuator2" class="ml-3 mt-3 btn-primary ml-2">Level 2</button>
+      </div>
+
     </ul>
 
     <div class="tab-content w-100">
       <div id="chart1" class="tab-pane fade show active border">
-        <h1 id="abc" align="center">Web Page Analyzer</h1>
+        <h1 align="center">Web Page Analyzer</h1>
         <div id="date" align="center">
 
         </div>
@@ -75,7 +86,7 @@
       </div>
 
       <div id="chart2" class="tab-pane fade show border">
-        <h1 id="abc" align="center">Web Page Analyzer</h1>
+        <h1 align="center">Web Page Analyzer</h1>
         <div id="date2" align="center">
         </div>
         <div id="myChart_lux">
@@ -87,31 +98,32 @@
         </div>
       </div>
 
-      <div id="data" class=" border tab-pane fade">
+      <div id="data" class="tab-pane fade show border">
         <div class="container">
           <h2 align="center">Data Analyzer</h2>
           <br>
 
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#day1">1 Day</a>
+          <ul class="nav nav-tabs" role="tablist"> 
+            <li class="nav-item active">
+              <a href="#day1" class="nav-link active" data-toggle="tab" role="tab">1 Day</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#day3">3 Days</a>
+              <a class="nav-link" data-toggle="tab" href="#day3" role="tab">3 Days</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#week1">1 Week</a>
+              <a class="nav-link" data-toggle="tab" href="#week1" role="tab">1 Week</a>
             </li>
           </ul>
 
           <div class="tab-content">
-            <div id="day1">
-              
+            <div id="day1" class="tab-pane fade in active">
+
             </div>
-            <div id="day3">
-              
+
+            <div id="day3" class="tab-pane fade">
             </div>
-            <div id="week1">
+
+            <div id="week1" class="tab-pane fade">
               
             </div>
 
@@ -121,10 +133,17 @@
         </div>
       </div>
     </div>
-  </div>
-  <div>
 
   </div>
+  
+
   <script src="/js/script3.js"></script>
+<!--   <script>
+    $(document).ready(function() {
+      $('#example').DataTable( {
+        "pagingType": "full_numbers"
+      } );
+    } );
+  </script> -->
 </body>
 </html>

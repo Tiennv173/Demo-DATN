@@ -58,6 +58,13 @@ router.get('/adduser', function(req, res, next) {
 	res.sendFile('/views/adduser.html', {root: './'});
 });
 
+router.get('/datatable', function(req, res, next) {
+	// console.log("add user");
+	res.sendFile('/views/database_table.html', {root: './'});
+});
+
+
+
 
 //POST route for add user
 router.post('/adduser', function(req, res, next) {

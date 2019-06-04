@@ -1,3 +1,6 @@
+var mqtt = require('mqtt')
+var client  = mqtt.connect('mqtt://fillab:123123123@smartpump.ml:1883')
+
 var express = require('express');
 var app = express();
 var MongoClient = require('mongodb').MongoClient;
@@ -54,10 +57,11 @@ const port = process.env.PORT || 3000;
 io = socketIO(server);
 
 // var url = "mongodb://filiotteam.ml:27017/";
+var url = "mongodb://smartpump.ml:27017/";
 // var url = "mongodb://27.73.53.224:27017/";
 // var url = "mongodb://192.168.0.104/";
 
-var url = "mongodb://localhost:27017";
+// var url = "mongodb://localhost:27017";
 var url2 = "mongodb://localhost:27017";
 
 io.on('connection', function(socket) {
@@ -69,10 +73,10 @@ io.on('connection', function(socket) {
 			const col = dbo.collection('data');
 			var count = col.find().count();
 			console.log(count);
-			col.find({"mac": "68:C6:3A:EA:1E:BC"}).sort({_id: -1}).limit(70).toArray(function(err, docs) {
+			col.find({"mac": "68:C6:3A:EA:1E:BC"}).toArray(function(err, docs) {
 				// console.log(docs);
 				console.log(typeof(docs));
-				docs = docs.reverse();
+				// docs = docs.reverse();
 				socket.emit('datas',docs);
 
 				//clone database from Pi
@@ -88,7 +92,20 @@ io.on('connection', function(socket) {
 	};
 
 	getData();
-	// setInterval(getData, 30000);
+	setInterval(getData, 30000);
+
+	socket.on('publish', function(msg) {
+		console.log(msg);
+		  client.publish('/tiennguyen', msg)
+
+		// client.on('connect', function () {
+
+		//   client.subscribe('/tiennguyen')
+
+		//   client.publish('/tiennguyen', 'Hello mqtt')
+		//   console.log('connected');
+		// })
+	})
 });
 
 // include routes
